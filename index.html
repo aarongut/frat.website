@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FRAT.WEBSITE</title>
+    <link rel="stylesheet" type="text/css" href="site.css">
+
+    <script>
+window.onload = function() {
+  var c = document.getElementById("grid");
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+  var ctx = c.getContext("2d");
+
+  var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+  gradient.addColorStop(0, "blue");
+  gradient.addColorStop(1, "red");
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, c.width, c.height);
+
+  ctx.lineWidth = 1;
+
+
+  for(var x=16; x < c.width; x *= 1.2) {
+    ctx.moveTo(x-16, 0);
+    ctx.lineTo(x-16, c.height);
+    ctx.stroke();
+  }
+
+  for(var y=16; y < c.height; y *= 1.2) {
+    ctx.moveTo(0, y-16);
+    ctx.lineTo(c.width, y-16);
+    ctx.stroke();
+  }
+}
+    </script>
+  </head>
+
+  <body>
+    <canvas id="grid" width="640" height="640"></canvas>
+    <div class="content">
+      <h1>FRAT.WEBSITE</h1>
+
+      <h2>EXCLUSIVE HOME OF FRAT.WEBSITE</h2>
+
+      <img src="beerpong.jpg" srcset="beerpong.jpg, beerpong.2x.jpg 2x"
+           width="200">
+      <img src="beerpong.jpg" srcset="beerpong.jpg, beerpong.2x.jpg 2x"
+           width="200">
+      <img src="beerpong.jpg" srcset="beerpong.jpg, beerpong.2x.jpg 2x"
+           width="200">
+
+      <h3>Who do you know here?</h3>
+      <hr>
+      <iframe width="100%"  src="https://www.youtube.com/embed/pZB1dtG5dHU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </body>
+</html>
