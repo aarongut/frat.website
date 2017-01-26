@@ -8,6 +8,16 @@
     <link rel="stylesheet" type="text/css" href="site.css">
 
     <script>
+var mousePos = {x: -64, y: -64};
+
+document.onmousemove = function(event) {
+  mousePos = {oldX: mousePos.x,
+              oldY: mousePos.y,
+              x: event.pageX,
+              y: event.pageY,
+  };
+}
+
 window.onload = function() {
   var c = document.getElementById("grid");
   c.width = window.innerWidth;
@@ -35,13 +45,44 @@ window.onload = function() {
     ctx.lineTo(c.width, y-16);
     ctx.stroke();
   }
+
+  placeImage();
+  setInterval(placeImage, 100);
+}
+
+
+function placeImage() {
+  if ((mousePos.x - mousePos.oldX)*(mousePos.x - mousePos.oldX) + 
+      (mousePos.y - mousePos.oldY)*(mousePos.y - mousePos.oldY) < 4)
+    return;
+
+  var img = document.createElement("img");
+  img.src = "mouse.png";
+  img.className = "mouse";
+  img.setAttribute("style", "top: " + (mousePos.y-32) + "px;"
+                          + "left: " + (mousePos.x-32) + "px;");
+
+  document.getElementById("content").appendChild(img);
+}
+
+function iknow() {
+  document.getElementById("cover").hidden = true;
+}
+
+function no() {
+  window.location.href = 'http://nta.gov.kp';
 }
     </script>
   </head>
 
   <body>
     <canvas id="grid" width="640" height="640"></canvas>
-    <div class="content">
+    <div id="cover">
+      <h1 class="who">WHO DO YOU KNOW HERE?</h1>
+      <button onclick="iknow()">JIMMY</button>
+      <button onclick="no()">UHHHH...</button>
+    </div>
+    <div class="content" id="content">
       <h1>FRAT.WEBSITE</h1>
 
       <h2>EXCLUSIVE HOME OF FRAT.WEBSITE</h2>
